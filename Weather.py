@@ -1,0 +1,72 @@
+import json
+import requests
+import win32com.client as w
+
+speaker_number = 1
+spk = w.Dispatch("SAPI.SpVoice")
+vcs = spk.GetVoices()
+spk.Voice
+spk.SetVoice(vcs.Item(speaker_number))
+
+print("Welcome To Know Weather")
+spk.speak("Welcome To Know Weather")
+spk.speak("Enter city")
+city = input("Enter city :: ")
+spk.speak(f"City entered {city}")
+
+url=f"https://api.weatherapi.com/v1/current.json?key=3a56e9d06c844614b0265438241102&q={city}"
+r = requests.get(url)
+wdic = json.loads(r.text)
+
+url1 = f"https://api.weatherapi.com/v1/astronomy.json?key=3a56e9d06c844614b0265438241102&q={city}"
+r1 = requests.get(url1)
+wd = json.loads(r1.text)
+
+print(f"Name:{wdic["location"]["name"]}")
+print(f"Region:{wdic["location"]["region"]}")
+print(f"Country:{wdic["location"]["country"]}")
+print(f"Continent:{wdic["location"]["tz_id"]}")
+print(f"LocalTime:{wdic["location"]["localtime"]}")
+print(f"Current temperature:{wdic["current"]["temp_c"]}")
+print(f"Last Updated:{wdic["current"]["last_updated"]}")
+print(f"Weather:{wdic["current"]["condition"]["text"]}")
+print(f"Wind Speed:{wdic["current"]["wind_kph"]}")
+print(f"Wind Degree:{wdic["current"]["wind_degree"]}")
+print(f"Precipitation (in mm):{wdic["current"]["precip_mm"]}")
+print(f"Pressure (in inches):{wdic["current"]["pressure_in"]}")
+print(f"Humidity:{wdic["current"]["humidity"]}")
+print(f"Clouds Percentage:{wdic["current"]["cloud"]}%")
+print(f"Feels Like:{wdic["current"]["feelslike_c"]}°c")
+print(f"Visibility:{wdic["current"]["vis_km"]}km")
+print(f"UV:{wdic["current"]["uv"]}")
+print("\nHere are some astronomical information as well,")
+print(f"Sunrise:{wd["astronomy"]["astro"]["sunrise"]}")
+print(f"Sunset:{wd["astronomy"]["astro"]["sunset"]}")
+print(f"Moonrise:{wd["astronomy"]["astro"]["moonrise"]}")
+print(f"Moonset:{wd["astronomy"]["astro"]["moonset"]}")
+print(f"Moon's Phase:{wd["astronomy"]["astro"]["moon_phase"]}")
+
+spk.speak("Hey I am weather assistant and i will tell you the above weather.")
+spk.speak(f"Name:{wdic["location"]["name"]}")
+spk.speak(f"Region:{wdic["location"]["region"]}")
+spk.speak(f"Country:{wdic["location"]["country"]}")
+spk.speak(f"Continent:{wdic["location"]["tz_id"]}")
+spk.speak(f"LocalTime:{wdic["location"]["localtime"]}")
+spk.speak(f"Current temperature:{wdic["current"]["temp_c"]}")
+spk.speak(f"Last Updated:{wdic["current"]["last_updated"]}")
+spk.speak(f"Weather:{wdic["current"]["condition"]["text"]}")
+spk.speak(f"Wind Speed:{wdic["current"]["wind_kph"]}")
+spk.speak(f"Wind Degree:{wdic["current"]["wind_degree"]}")
+spk.speak(f"Precipitation (in mm):{wdic["current"]["precip_mm"]}")
+spk.speak(f"Pressure (in inches):{wdic["current"]["pressure_in"]}")
+spk.speak(f"Humidity:{wdic["current"]["humidity"]}")
+spk.speak(f"Clouds Percentage:{wdic["current"]["cloud"]}%")
+spk.speak(f"Feels Like:{wdic["current"]["feelslike_c"]}°c")
+spk.speak(f"Visibility:{wdic["current"]["vis_km"]}km")
+spk.speak(f"UV:{wdic["current"]["uv"]}")
+spk.speak("Here are some astronomical information as well,")
+spk.speak(f"Sunrise:{wd["astronomy"]["astro"]["sunrise"]}")
+spk.speak(f"Sunset:{wd["astronomy"]["astro"]["sunset"]}")
+spk.speak(f"Moonrise:{wd["astronomy"]["astro"]["moonrise"]}")
+spk.speak(f"Moonset:{wd["astronomy"]["astro"]["moonset"]}")
+spk.speak(f"Moon's Phase:{wd["astronomy"]["astro"]["moon_phase"]}")
