@@ -40,11 +40,11 @@ class WEATHER:
   def api(self):
       self.a()
       speaker = w.Dispatch("SAPI.SpVoice")
-      self.url = f"https://api.weatherapi.com/v1/current.json?key=3a56e9d06c844614b0265438241102&q={self.city}"
+      self.url = f"https://api.weatherapi.com/v1/current.json?key={Your_API_Key}&q={self.city}"
       self.r = requests.get(self.url)
       self.wdic = json.loads(self.r.text)
 
-      self.url1 = f"https://api.weatherapi.com/v1/astronomy.json?key=3a56e9d06c844614b0265438241102&q={self.city}"
+      self.url1 = f"https://api.weatherapi.com/v1/astronomy.json?key={Your_API_Key}&q={self.city}"
       self.r1 = requests.get(self.url1)
       self.wd = json.loads(self.r1.text)
 
