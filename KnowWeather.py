@@ -14,11 +14,11 @@ spk.speak("Enter city")
 city = input("Enter city :: ")
 spk.speak(f"City entered {city}")
 
-url=f"https://api.weatherapi.com/v1/current.json?key=3a56e9d06c844614b0265438241102&q={city}"
+url=f"https://api.weatherapi.com/v1/current.json?key={Your_API_Key}&q={city}"
 r = requests.get(url)
 wdic = json.loads(r.text)
 
-url1 = f"https://api.weatherapi.com/v1/astronomy.json?key=3a56e9d06c844614b0265438241102&q={city}"
+url1 = f"https://api.weatherapi.com/v1/astronomy.json?key={Your_API_Key}&q={city}"
 r1 = requests.get(url1)
 wd = json.loads(r1.text)
 
